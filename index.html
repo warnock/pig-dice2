@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/scripts.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <form id="inputForm">
+        <div class="form-group">
+          <label for="userInput">Enter something and I'll echo it back to you.</label>
+          <input type="text" id="userInput" class="form-control">
+          <p id="errorFeedback">You must enter something.</p>
+        </div>
+        <button type="submit" name="button" class="btn">Submit</button>
+      </form>
+      <div class="response">
+        <p><span id="echoInput"></span></p>
+      </div>
+    </div>
+  </body>
+</html>
