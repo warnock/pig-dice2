@@ -1,34 +1,74 @@
 // Business logic
-function rollDie() {
-  min = Math.ceil(1);
-  max = Math.floor(6);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+var currentRoll = 0;
 var turnScore = 0;
 var totalScore = 0;
+
+function rollDie() {
+  currentRoll = Math.floor(Math.random() * 6) + 1;
+  if (currentRoll === 1) {
+    turnScore = 0;
+  } else {
+    turnScore += currentRoll;
+  }
+}
+
+function hold() {
+  totalScore += turnScore;
+  // something to switch players. here and maybe something else in the front end.
+}
+
+var endTurn = function() {
+  //something to end the turn
+};
+
+
+
 // var echoFunction = function(string) {
 //   return string;
 // };
 
 // Front end logic
 $(function() {
+  var hideAll = function() {
+    $("#holdOrRoll").hide();
+    $("#endTurnText").hide();
+    $("#bust").hide();
+    $("#holdButton").hide();
+  };
+
+  hideAll();
+
   $("#rollDie").click(function(){
+    hideAll();
     $("#holdOrRoll").show();
-    $("#hold").show();
-    var currentRoll = rollDie();
-    turnScore += currentRoll;
-    $("#rollDisplay").text(currentRoll);
-    $(".turnDisplay").text(turnScore);
+    $("#holdButton").show();
+    rollDie();
+    if (currentRoll === 1) {
+      bust();
+    } else {
+      $("#rollDisplay").text(currentRoll);
+      $(".turnDisplay").text(turnScore);
+    }
   });
 
-  $("#hold").click(function(){
-    $("#holdOrRoll").hide();
-    $("#endTurn").show();
-    totalScore += turnScore;
+  $("#holdButton").click(function(){
+    hideAll();
+    $("#endTurnText").show();
+    hold();
     $(".turnDisplay").text(turnScore);
     $(".totalDisplay").text(totalScore);
+    endTurn();
   });
 
+
+
+  var bust = function() {
+    hideAll();
+    $("#bust").show();
+    endTurn();
+  };
+
+  // Leaving this here for form syntax in case we later take players' names
   // $("form#inputForm").submit(function(event){
   //   event.preventDefault();
     // userString = $("input#userInput").val();
