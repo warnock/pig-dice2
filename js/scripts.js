@@ -1,27 +1,37 @@
 // Business logic
 var currentRoll = 0;
-var turnScore = 0;
-var totalScore = 0;
+// var turnScore = 0;
+// var totalScore = 0;
 
-function rollDie() {
-  currentRoll = Math.floor(Math.random() * 6) + 1;
-  if (currentRoll === 1) {
-    turnScore = 0;
-  } else {
-    turnScore += currentRoll;
-  }
+function Player(name) {
+  this.name = name;
+  this.totalScore = 0;
+  this.turnScore = 0;
 }
 
-function hold() {
-  totalScore += turnScore;
+Player.prototype.rollDie = function() {
+  currentRoll = Math.floor(Math.random() * 6) + 1;
+  if (currentRoll === 1) {
+    this.turnScore = 0;
+  } else {
+    this.turnScore += currentRoll;
+  } return this.turnScore;
+}
+
+Player.prototype.hold = function() {
+  this.totalScore += this.turnScore;
+  return this.totalScore;
   // something to switch players. here and maybe something else in the front end.
 }
 
 var endTurn = function() {
-  //something to end the turn
+  if (currentPlayer === player1) {
+    currentPlayer === player2;
+  }
+  else {
+    currentPlayer === player1;
+  }
 };
-
-
 
 // var echoFunction = function(string) {
 //   return string;
@@ -38,11 +48,17 @@ $(function() {
 
   hideAll();
 
+  var player1 = new Player("Megan");
+  console.log(player1);
+  // var player2 = new Player("Nathaniel");
+  // var currentPlayer = player1;
+
   $("#rollDie").click(function(){
     hideAll();
     $("#holdOrRoll").show();
     $("#holdButton").show();
-    rollDie();
+    turnScore = player1.rollDie();
+    console.log(player1);
     if (currentRoll === 1) {
       bust();
     } else {
@@ -54,18 +70,17 @@ $(function() {
   $("#holdButton").click(function(){
     hideAll();
     $("#endTurnText").show();
-    hold();
-    $(".turnDisplay").text(turnScore);
+    totalScore = player1.hold();
+    console.log(player1);
+    $(".turnDisplay").text(this.turnScore);
     $(".totalDisplay").text(totalScore);
-    endTurn();
+    // endTurn();
   });
-
-
 
   var bust = function() {
     hideAll();
     $("#bust").show();
-    endTurn();
+    // endTurn();
   };
 
   // Leaving this here for form syntax in case we later take players' names
