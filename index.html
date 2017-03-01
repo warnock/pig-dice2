@@ -14,11 +14,18 @@
           <label for="userInput">Enter something and I'll echo it back to you.</label>
           <input type="text" id="userInput" class="form-control">
         </div> -->
-        <button type="submit" name="button" class="btn" id="rollDie">Click the button to see a dice roll.</button>
       <!-- </form> -->
-      <div class="response">
-        <p><span id="rollDisplay"></span></p>
+      <div id="holdOrRoll">
+        <p>You just rolled <span id="rollDisplay"></span>.</p>
+        <p>Your running score for this turn is <span class="turnDisplay"></span>.</p>
+        <p>Do you want to hold or roll again?</p>
       </div>
+      <div id="endTurn">
+        <p>Your score for this turn is <span class="turnDisplay"></span>.</p>
+        <p>Your total score is <span class="totalDisplay"></span>.</p>
+      </div>
+      <button type="submit" name="button" class="btn" id="hold">Hold</button>
+      <button type="submit" name="button" class="btn" id="rollDie">Click the button to roll a die.</button>
     </div>
   </body>
 </html>
