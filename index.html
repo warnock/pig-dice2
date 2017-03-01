@@ -9,26 +9,34 @@
   </head>
   <body>
     <div class="container">
-      <!-- <form id="inputForm"> -->
-        <!-- <div class="form-group">
-          <label for="userInput">Enter something and I'll echo it back to you.</label>
-          <input type="text" id="userInput" class="form-control">
-        </div> -->
-      <!-- </form> -->
-      <div id="holdOrRoll">
-        <p>You just rolled <span id="rollDisplay"></span>.</p>
-        <p>Your running score for this turn is <span class="turnDisplay"></span>.</p>
-        <p>Do you want to hold or roll again?</p>
+      <div class="row">
+        <div class="col-md-6 text-align">
+          <h1>Player 1</h1>
+          <p>Total Score: <span id="player1TotalScore"></span></p>
+          <button type="submit" name="button" class="btn" id="player1HoldButton">Hold</button>
+          <button type="submit" name="button" class="btn" id="player1RollDie">Click the button to roll a die.</button>
+        </div>
+        <div class="col-md-6 text-align">
+          <h1>Player 2</h1>
+          <p>Total Score: <span id="player2TotalScore"></span></p>
+          <button type="submit" name="button" class="btn" id="player2HoldButton">Hold</button>
+          <button type="submit" name="button" class="btn" id="player2RollDie">Click the button to roll a die.</button>
+        </div>
       </div>
-      <div id="endTurnText">
-        <p>Your score for this turn is <span class="turnDisplay"></span>.</p>
-        <p>Your total score is <span class="totalDisplay"></span>.</p>
+      <div class="row text-align">
+        <div id="holdOrRoll">
+          <p>You just rolled <span id="rollDisplay"></span>.</p>
+          <p>Your running score for this turn is <span class="turnDisplay"></span>.</p>
+          <p>Do you want to hold or roll again?</p>
+        </div>
+        <div id="endTurnText">
+          <p>Your score for this turn is <span class="turnDisplay"></span>.</p>
+          <p>Your total score is <span class="totalDisplay"></span>.</p>
+        </div>
+        <div id="bust">
+          <p>You rolled a 1 and went bust! Your turn is over.</p>
+        </div>
       </div>
-      <div id="bust">
-        <p>You rolled a 1 and went bust! Your turn is over.</p>
-      </div>
-      <button type="submit" name="button" class="btn" id="holdButton">Hold</button>
-      <button type="submit" name="button" class="btn" id="rollDie">Click the button to roll a die.</button>
     </div>
   </body>
 </html>

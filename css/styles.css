@@ -1,3 +1,11 @@
 /*#holdOrRoll, #endTurnText, #holdButton, #bust {
   display: none;
 }*/
+.text-align {
+  text-align: center;
+  background-color: #eee;
+}
+
+#player1HoldButton, #player2HoldButton, #player2RollButton {
+  disabled = true;
+}
