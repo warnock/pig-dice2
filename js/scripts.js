@@ -1,7 +1,7 @@
 // Business logic
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
+function rollDie() {
+  min = Math.ceil(1);
+  max = Math.floor(6);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -22,8 +22,8 @@ $(function() {
     $(".response").show();
     //   $("#echoInput").text(output);
     // }
-    debugger;
-    var currentRoll = getRandomIntInclusive(1, 6);
+    // debugger;
+    var currentRoll = rollDie();
     $("#rollDisplay").text(currentRoll);
   });
 });
