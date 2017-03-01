@@ -4,8 +4,6 @@ var currentRoll = 0;
 // var totalScore = 0;
 var player1 = new Player("Megan");
 var player2 = new Player("Nathaniel");
-this.player = player1;
-console.log(player1);
 
 function Player(name) {
   this.name = name;
@@ -36,8 +34,8 @@ $(function() {
     $("#bust").hide();
     $("#player1HoldButton").hide();
   };
-  $("#player2HoldButton").prop("disabled",true);
-  $("#player2RollDie").prop("disabled",true);
+  $("#player2HoldButton").toggleClass("disabled");
+  $("#player2RollDie").toggleClass("disabled");
   $("#player1TotalScore").text("0");
   $("#player2TotalScore").text("0");
   hideAll();
@@ -62,18 +60,45 @@ $(function() {
     totalScore = player1.hold();
     console.log(player1);
     $(".turnDisplay").text(this.turnScore);
+    $("#player1TotalScore").text(totalScore);
+    $(".totalDisplay").text(totalScore);
+    endTurn();
+  });
+
+  $("#player2RollDie").click(function(){
+    hideAll();
+    $("#holdOrRoll").show();
+    $("#player2HoldButton").show();
+    turnScore = player2.rollDie();
+    console.log(player2);
+    if (currentRoll === 1) {
+      bust();
+    } else {
+      $("#rollDisplay").text(currentRoll);
+      $(".turnDisplay").text(turnScore);
+    }
+  });
+
+  $("#player2HoldButton").click(function(){
+    hideAll();
+    $("#endTurnText").show();
+    totalScore = player2.hold();
+    console.log(player2);
+    $(".turnDisplay").text(this.turnScore);
+    $("#player2TotalScore").text(totalScore);
     $(".totalDisplay").text(totalScore);
     endTurn();
   });
 
   var bust = function() {
     hideAll();
-
     $("#bust").show();
     endTurn();
   };
 
   var endTurn = function() {
-
+    player1.turnScore = 0;
+    player2.turnScore = 0;
+    $(".btn").toggleClass("disabled");
   };
 });
