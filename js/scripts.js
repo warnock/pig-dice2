@@ -11,19 +11,22 @@ function rollDie() {
 
 // Front end logic
 $(function() {
-  $("form#inputForm").submit(function(event){
-    event.preventDefault();
+  $("#rollDie").click(function(){
+    $(".response").show();
+    var currentRoll = rollDie();
+    $("#rollDisplay").text(currentRoll);
+  });
+  
+  // $("form#inputForm").submit(function(event){
+  //   event.preventDefault();
     // userString = $("input#userInput").val();
     // if (!userString) {
     //   $("#errorFeedback").show();
     // } else {
     //   $("#errorFeedback").hide();
     //   output = echoFunction(userString);
-    $(".response").show();
     //   $("#echoInput").text(output);
     // }
     // debugger;
-    var currentRoll = rollDie();
-    $("#rollDisplay").text(currentRoll);
-  });
+  // });
 });
