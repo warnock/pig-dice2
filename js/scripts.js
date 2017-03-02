@@ -14,41 +14,52 @@ function Player(name) {
 Player.prototype.rollDie = function() {
   currentRoll = Math.floor(Math.random() * 6) + 1;
   if (currentRoll === 1) {
-    this.turnScore = 0;
+    currentPlayer.endTurn();
   } else {
-    this.turnScore += currentRoll;
-  } if (this.totalScore + this.turnScore >= 100) {
+    currentPlayer.turnScore += currentRoll;
+  } if (currentPlayer.totalScore + currentPlayer.turnScore >= 100) {
     alert("You're a big weiner!");
   } else {
-  return this.turnScore;}
+  return currentPlayer.turnScore;}
 }
 
 Player.prototype.hold = function() {
-  this.totalScore += this.turnScore;
-  return this.totalScore;
+  currentPlayer.totalScore += currentPlayer.turnScore;
+  currentPlayer.endTurn();
   // something to switch players. here and maybe something else in the front end.
 }
 
+Player.prototype.endTurn = function() {
+  currentPlayer.turnScore = 0;
+  if (player1 === currentPlayer) {
+    player1 = currentPlayer;
+    currentPlayer = player2;
+  } else {
+    player2 = currentPlayer;
+    currentPlayer = player1;
+  } console.log(currentPlayer);
+}
+
 // Front end logic
-$(function() {
+// $(function() {
   var hideAll = function() {
     $("#holdOrRoll").hide();
     $("#endTurnText").hide();
     $("#bust").hide();
     $("#player1HoldButton").hide();
   };
-  $("#player2HoldButton").prop("disabled", true);
-  $("#player2RollDie").prop("disabled", true);
-  $("#player1TotalScore").text("0");
-  $("#player2TotalScore").text("0");
+  // $("#player2HoldButton").prop("disabled", true);
+  // $("#player2RollDie").prop("disabled", true);
+  // $("#player1TotalScore").text("0");
+  // $("#player2TotalScore").text("0");
   hideAll();
 
-  $("#player1RollDie").click(function(){
+  $("#rollDie").click(function(){
     hideAll();
     $("#holdOrRoll").show();
-    $("#player1HoldButton").show();
-    turnScore = player1.rollDie();
-    console.log(player1);
+    $("#holdButton").show();
+    turnScore = currentPlayer.rollDie();
+    console.log(currentPlayer);
     if (currentRoll === 1) {
       bust();
     } else {
@@ -57,38 +68,13 @@ $(function() {
     }
   });
 
-  $("#player1HoldButton").click(function(){
+  $("#holdButton").click(function(){
     hideAll();
     $("#endTurnText").show();
-    totalScore = player1.hold();
-    console.log(player1);
-    $(".turnDisplay").text(this.turnScore);
-    $("#player1TotalScore").text(totalScore);
-    $(".totalDisplay").text(totalScore);
-    endTurn();
-  });
-
-  $("#player2RollDie").click(function(){
-    hideAll();
-    $("#holdOrRoll").show();
-    $("#player2HoldButton").show();
-    turnScore = player2.rollDie();
-    console.log(player2);
-    if (currentRoll === 1) {
-      bust();
-    } else {
-      $("#rollDisplay").text(currentRoll);
-      $(".turnDisplay").text(turnScore);
-    }
-  });
-
-  $("#player2HoldButton").click(function(){
-    hideAll();
-    $("#endTurnText").show();
-    totalScore = player2.hold();
-    console.log(player2);
-    $(".turnDisplay").text(this.turnScore);
-    $("#player2TotalScore").text(totalScore);
+    totalScore = currentPlayer.hold();
+    console.log(currentPlayer);
+    $(".turnDisplay").text(currentPlayer.turnScore);
+    $("#totalScore").text(totalScore);
     $(".totalDisplay").text(totalScore);
     endTurn();
   });
@@ -99,15 +85,14 @@ $(function() {
     endTurn();
   };
 
-  var endTurn = function() {
-    player1.turnScore = 0;
-    player2.turnScore = 0;
-    $(".btn").each(function() {
-      if (this.hasAttribute("disabled")) {
-        $(this).prop("disabled", false);
-      } else {
-        $(this).prop("disabled", true);
-      }
-    });
-  };
-});
+  // var endTurn = function() {
+  //   currentPlayer.turnScore = 0;
+  //   $(".btn").each(function() {
+  //     if (this.hasAttribute("disabled")) {
+  //       $(this).prop("disabled", false);
+  //     } else {
+  //       $(this).prop("disabled", true);
+  //     }
+  //   });
+  // };
+// });
