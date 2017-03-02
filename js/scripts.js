@@ -17,7 +17,10 @@ Player.prototype.rollDie = function() {
     this.turnScore = 0;
   } else {
     this.turnScore += currentRoll;
-  } return this.turnScore;
+  } if (this.totalScore + this.turnScore >= 100) {
+    alert("You're a big weiner!");
+  } else {
+  return this.turnScore;}
 }
 
 Player.prototype.hold = function() {
@@ -34,8 +37,8 @@ $(function() {
     $("#bust").hide();
     $("#player1HoldButton").hide();
   };
-  $("#player2HoldButton").toggleClass("disabled");
-  $("#player2RollDie").toggleClass("disabled");
+  $("#player2HoldButton").prop("disabled", true);
+  $("#player2RollDie").prop("disabled", true);
   $("#player1TotalScore").text("0");
   $("#player2TotalScore").text("0");
   hideAll();
@@ -99,6 +102,12 @@ $(function() {
   var endTurn = function() {
     player1.turnScore = 0;
     player2.turnScore = 0;
-    $(".btn").toggleClass("disabled");
+    $(".btn").each(function() {
+      if (this.hasAttribute("disabled")) {
+        $(this).prop("disabled", false);
+      } else {
+        $(this).prop("disabled", true);
+      }
+    });
   };
 });
