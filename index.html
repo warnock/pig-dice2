@@ -9,22 +9,29 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
+      <div class="playerNamesFormDiv">
+        <form id="playerNames">
+          <div class="form-group">
+            <label for="player1Name">Player 1, please enter your name.</label>
+            <input type="text" class="form-control" id="player1Name">
+          </div>
+          <div class="form-group">
+            <label for="player2Name">Player 2, please enter your name.</label>
+            <input type="text" class="form-control" id="player2Name">
+          </div>
+          <button type="submit" class="btn">Start the game</button>
+        </form>
+      </div>
+      <div class="row" id="playerInterface">
         <div class="col-md-6 text-align">
-          <h1>Player 1</h1>
-          <p>Total Score: <span id="player1TotalScore"></span></p>
-          <button type="submit" name="button" class="btn" id="holdButton">Hold</button>
-          <button type="submit" name="button" class="btn" id="rollDie">Click the button to roll a die.</button>
-        </div>
-        <!-- <div class="col-md-6 text-align">
-          <h1>Player 2</h1>
-          <p>Total Score: <span id="player2TotalScore"></span></p>
-          <button type="submit" name="button" class="btn" id="player2HoldButton">Hold</button>
-          <button type="submit" name="button" class="btn" id="player2RollDie">Click the button to roll a die.</button>
-        </div> -->
+        <!-- <h1>Player 2</h1>
+        <p>Total Score: <span id="player2TotalScore"></span></p> -->
+        <button type="submit" name="button" class="btn" id="holdButton">Hold</button>
+        <button type="submit" name="button" class="btn" id="rollDie">Click the button to roll a die.</button>
+      </div>
       </div>
       <div class="row text-align">
-        <div id="holdOrRoll">
+        <!-- <div id="holdOrRoll">
           <p>You just rolled <span id="rollDisplay"></span>.</p>
           <p>Your running score for this turn is <span class="turnDisplay"></span>.</p>
           <p>Do you want to hold or roll again?</p>
@@ -35,7 +42,7 @@
         </div>
         <div id="bust">
           <p>You rolled a 1 and went bust! Your turn is over.</p>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>
